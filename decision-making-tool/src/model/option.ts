@@ -1,4 +1,4 @@
-export class Option {
+export class OptionModel {
   public id: string
   public title: string
   public weight: number

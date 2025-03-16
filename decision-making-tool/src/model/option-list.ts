@@ -1,21 +1,21 @@
-import type { Option } from '@/model/option'
+import { type OptionModel } from '@/model/option'
 
-export default class OptionList {
-  private readonly options: Option[]
+export class OptionListModel {
+  private readonly options: OptionModel[]
 
-  constructor(options: Option[] = []) {
+  constructor(options: OptionModel[] = []) {
     this.options = options
   }
 
-  public get allOptions(): Option[] {
+  public get allOptions(): OptionModel[] {
     return this.options
   }
 
-  public addOption(option: Option): void {
+  public addOption(option: OptionModel): void {
     this.options.push(option)
   }
 
-  public updateOption(updatedOption: Option): boolean {
+  public updateOption(updatedOption: OptionModel): boolean {
     const index = this.options.findIndex((option) => option.id === updatedOption.id)
 
     if (index !== -1) {
@@ -26,7 +26,7 @@ export default class OptionList {
     return false
   }
 
-  public deleteOption(optionId: Option['id']): boolean {
+  public deleteOption(optionId: OptionModel['id']): boolean {
     const index = this.options.findIndex((option) => option.id === optionId)
 
     if (index !== -1) {
@@ -37,7 +37,7 @@ export default class OptionList {
     return false
   }
 
-  public getOptionById(optionId: Option['id']): Option | undefined {
+  public getOptionById(optionId: OptionModel['id']): OptionModel | undefined {
     return this.options.find((option) => option.id === optionId)
   }
 }

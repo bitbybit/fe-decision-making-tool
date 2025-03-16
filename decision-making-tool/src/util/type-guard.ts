@@ -1,4 +1,4 @@
-import { type Option } from '@/model/option'
+import { type OptionModel } from '@/model/option'
 
 /**
  * If value is an object
@@ -10,11 +10,11 @@ export function isObject(value: unknown): value is Record<string, unknown> {
 }
 
 /**
- * If value has Option entity fields
+ * If value has OptionModel entity fields
  * @param value Value to check
  * @returns Boolean result
  */
-export function isOption(value: unknown): value is Option {
+export function isOption(value: unknown): value is OptionModel {
   return (
     isObject(value) &&
     typeof value?.id === 'string' &&

@@ -1,29 +1,29 @@
-import OptionList from '@/model/option-list'
+import { OptionListModel } from '@/model/option-list'
+import { OptionModel } from '@/model/option'
 import { isOption } from '@/util/type-guard'
-import { Option } from '@/model/option'
 
 /**
- * Convert OptionList to JSON string
- * @param value OptionList entity
+ * Convert OptionListModel to JSON string
+ * @param value OptionListModel entity
  * @returns JSON string
  */
-export function optionListToJson(value: OptionList): string {
+export function optionListToJson(value: OptionListModel): string {
   return JSON.stringify(value.allOptions)
 }
 
 /**
- * Convert JSON string to OptionList
+ * Convert JSON string to OptionListModel
  * @param value JSON string
- * @returns OptionList entity
+ * @returns OptionListModel entity
  */
-export function jsonToOptionList(value: string): OptionList {
+export function jsonToOptionList(value: string): OptionListModel {
   const parsed: unknown = JSON.parse(value)
 
   if (!Array.isArray(parsed) || !parsed.every((option) => isOption(option))) {
     throw new TypeError(`${value} is not a valid list of options`)
   }
 
-  const options = parsed.map(({ id, title, weight }) => new Option(id, title, weight))
+  const options = parsed.map(({ id, title, weight }) => new OptionModel(id, title, weight))
 
-  return new OptionList(options)
+  return new OptionListModel(options)
 }
