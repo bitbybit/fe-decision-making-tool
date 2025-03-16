@@ -1,8 +1,15 @@
 import { getPath } from '@/util/location'
+import { type Component } from '@/ui/component'
 
 export type RouteCallback = () => void
+
 export type Routes = Record<string, RouteCallback>
-export type RouteView = { render(): void }
+
+export type RouteView = {
+  container: Component
+  setRouter(router: Router): void
+}
+
 export type RouteViews = Record<keyof Routes, new () => RouteView>
 
 export class Router {
@@ -18,6 +25,10 @@ export class Router {
   }
 
   public navigate(path: string): void {
+    if (globalThis.location.hash !== `#${path}`) {
+      globalThis.location.hash = path
+    }
+
     const routeCallback = this.routes[path] ?? this.defaultRoute
 
     routeCallback()
