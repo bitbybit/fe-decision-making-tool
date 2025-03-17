@@ -13,7 +13,7 @@ export class OptionItem extends Component {
   private readonly deleteButton: OptionItemDeleteButton
 
   constructor({ id, title = '', weight = '' }: { id: string; title?: string; weight?: string }) {
-    super({ tag: 'div', className: 'grid grid-cols-4 gap-2 items-center p-2 border-b' })
+    super({ tag: 'div', className: 'flex gap-2 items-center p-2 border-b' })
 
     this.id = new OptionItemId({ id: `#${id}` })
     this.titleInput = new OptionItemTitleInput({ title })
