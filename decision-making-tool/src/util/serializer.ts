@@ -8,7 +8,7 @@ import { isOption } from '@/util/type-guard'
  * @returns JSON string
  */
 export function optionListToJson(value: OptionListModel): string {
-  return JSON.stringify(value.allOptions)
+  return JSON.stringify(value.entries)
 }
 
 /**

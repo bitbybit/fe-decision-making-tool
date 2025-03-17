@@ -24,6 +24,30 @@ export class OptionsControls extends Component {
     this.loadButton = new OptionsControlsLoadButton()
     this.startButton = new OptionsControlsStartButton()
 
+    this.addButton.addListener('click', () => {
+      this.eventTarget.dispatchEvent(new CustomEvent('click:add'))
+    })
+
+    this.pasteButton.addListener('click', () => {
+      this.eventTarget.dispatchEvent(new CustomEvent('click:paste'))
+    })
+
+    this.clearButton.addListener('click', () => {
+      this.eventTarget.dispatchEvent(new CustomEvent('click:clear'))
+    })
+
+    this.saveButton.addListener('click', () => {
+      this.eventTarget.dispatchEvent(new CustomEvent('click:save'))
+    })
+
+    this.loadButton.addListener('click', () => {
+      this.eventTarget.dispatchEvent(new CustomEvent('click:load'))
+    })
+
+    this.startButton.addListener('click', () => {
+      this.eventTarget.dispatchEvent(new CustomEvent('click:start'))
+    })
+
     this.appendChildren([
       this.addButton,
       this.pasteButton,

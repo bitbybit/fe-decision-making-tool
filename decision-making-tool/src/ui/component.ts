@@ -1,4 +1,6 @@
 export class Component {
+  public readonly eventTarget: EventTarget
+
   private readonly children: Component[] = []
   private readonly node: HTMLElement
 
@@ -14,6 +16,8 @@ export class Component {
     },
     ...children: Component[]
   ) {
+    this.eventTarget = new EventTarget()
+
     const node = document.createElement(tag)
 
     node.className = className
@@ -62,8 +66,8 @@ export class Component {
   }
 
   public addListener(
-    event: string,
-    listener: (this: HTMLElement, event: unknown) => void,
+    event: keyof HTMLElementEventMap,
+    listener: (this: HTMLElement, event: Event) => void,
     options: boolean | undefined = false
   ): void {
     this.node.addEventListener(event, listener, options)
@@ -71,7 +75,7 @@ export class Component {
 
   public removeListener(
     event: string,
-    listener: (this: HTMLElement, event: unknown) => void,
+    listener: (this: HTMLElement, event: Event) => void,
     options: boolean | undefined = false
   ): void {
     this.node.removeEventListener(event, listener, options)

@@ -7,7 +7,7 @@ export class OptionListModel {
     this.options = options
   }
 
-  public get allOptions(): OptionModel[] {
+  public get entries(): OptionModel[] {
     return this.options
   }
 

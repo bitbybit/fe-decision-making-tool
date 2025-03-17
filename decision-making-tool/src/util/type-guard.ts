@@ -22,3 +22,12 @@ export function isOption(value: unknown): value is OptionModel {
     typeof value?.weight === 'number'
   )
 }
+
+/**
+ * If target is input element
+ * @param target element to check
+ * @returns Boolean result
+ */
+export function isHtmlInput(target: unknown): target is HTMLInputElement {
+  return target instanceof HTMLInputElement
+}
