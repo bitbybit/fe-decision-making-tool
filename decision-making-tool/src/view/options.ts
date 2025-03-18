@@ -85,8 +85,12 @@ export class OptionsView extends BaseView implements RouteView {
     })
 
     this.controls.eventTarget.addEventListener('click:start', () => {
-      if (state.optionList.entries.length < this.minOptionAmountToStart) {
-        this.modalMessage.display(`Please add at least ${this.minOptionAmountToStart} valid options.`)
+      const validOptions = state.optionList.entries.filter(({ title, weight }) => title !== '' && weight > 0)
+
+      if (validOptions.length < this.minOptionAmountToStart) {
+        this.modalMessage.display(
+          `Please add at least ${this.minOptionAmountToStart} valid options. An option is considered valid if its title is not empty and its weight is greater than 0.`
+        )
         return
       }
 
