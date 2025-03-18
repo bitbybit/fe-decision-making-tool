@@ -31,3 +31,15 @@ export function isOption(value: unknown): value is OptionModel {
 export function isHtmlInput(target: unknown): target is HTMLInputElement {
   return target instanceof HTMLInputElement
 }
+
+/**
+ * If value is data from loaded JSON file
+ * @param value Value to check
+ * @returns Boolean result
+ */
+export function isDataJson(value: unknown): value is {
+  optionList: string
+  optionCounter: number
+} {
+  return isObject(value) && typeof value?.optionList === 'string' && typeof value?.optionCounter === 'number'
+}

@@ -59,7 +59,7 @@ class State {
 
   public decrementOptionCounter(): number {
     if (this.state.optionCounter > 0) {
-      this.state.optionCounter -= 1
+      this.state.optionCounter = Number(this.optionList.entries.at(-1)?.id ?? this.state.optionCounter - 1)
       this.persist()
     }
 
@@ -69,6 +69,13 @@ class State {
   public clear(): void {
     this.state.optionList.entries.length = 0
     this.state.optionCounter = 0
+
+    this.persist()
+  }
+
+  public load(optionList: OptionListModel, optionCounter: number): void {
+    this.state.optionList = optionList
+    this.state.optionCounter = optionCounter
 
     this.persist()
   }

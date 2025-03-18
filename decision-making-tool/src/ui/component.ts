@@ -67,7 +67,7 @@ export class Component {
 
   public addListener(
     event: keyof HTMLElementEventMap,
-    listener: (this: HTMLElement, event: Event) => void,
+    listener: (this: HTMLElement, event: Event) => unknown,
     options: boolean | undefined = false
   ): void {
     this.node.addEventListener(event, listener, options)
@@ -75,7 +75,7 @@ export class Component {
 
   public removeListener(
     event: string,
-    listener: (this: HTMLElement, event: Event) => void,
+    listener: (this: HTMLElement, event: Event) => unknown,
     options: boolean | undefined = false
   ): void {
     this.node.removeEventListener(event, listener, options)

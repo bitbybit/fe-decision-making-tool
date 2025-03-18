@@ -6,6 +6,9 @@ import { OptionsContainer } from '@/ui/options-container'
 import { Header } from '@/ui/header'
 import { Options } from '@/ui/options'
 import { OptionsControls } from '@/ui/options-controls'
+import { jsonToOptionList, optionListToJson } from '@/util/serializer'
+import { loadDataFromJson, saveDataToJson } from '@/util/file'
+import { isDataJson, isObject } from '@/util/type-guard'
 import { state } from '@/state'
 
 export class OptionsView extends BaseView implements RouteView {
@@ -35,6 +38,35 @@ export class OptionsView extends BaseView implements RouteView {
     this.controls.eventTarget.addEventListener('click:clear', () => {
       state.clear()
       this.options.destroyChildren()
+    })
+
+    this.controls.eventTarget.addEventListener('click:save', () => {
+      const data = {
+        optionList: optionListToJson(state.optionList),
+        optionCounter: state.optionCounter
+      }
+
+      saveDataToJson('data.json', JSON.stringify(data))
+    })
+
+    this.controls.eventTarget.addEventListener('click:load', () => {
+      loadDataFromJson()
+        .then((data) => {
+          const parsed: unknown = JSON.parse(data)
+
+          if (!isDataJson(parsed)) {
+            throw new TypeError('Invalid JSON')
+          }
+
+          this.options.destroyChildren()
+          state.load(jsonToOptionList(parsed.optionList), parsed.optionCounter)
+          this.initOptionItems()
+
+          return true
+        })
+        .catch((error) => {
+          console.error(error)
+        })
     })
 
     this.controls.eventTarget.addEventListener('click:start', () => {
