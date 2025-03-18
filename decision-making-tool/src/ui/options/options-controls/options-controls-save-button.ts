@@ -1,6 +1,6 @@
 import { Component } from '@/ui/component'
 
-export class OptionsControlsSaveButton extends Component {
+export class OptionsControlsSaveButton extends Component<'button'> {
   constructor() {
     super({
       tag: 'button',

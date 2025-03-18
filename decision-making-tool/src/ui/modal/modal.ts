@@ -1,7 +1,6 @@
 import { Component } from '@/ui/component'
-import { isHtmlDialog } from '@/util/type-guard'
 
-export class Modal extends Component {
+export class Modal extends Component<'dialog'> {
   private readonly handleEscapeKeyPressBound = this.handleEscapeKeyPress.bind(this)
 
   constructor({ className = '' } = {}) {
@@ -19,10 +18,6 @@ export class Modal extends Component {
   public open(): void {
     const node = this.getNode()
 
-    if (!isHtmlDialog(node)) {
-      return
-    }
-
     document.body.classList.add('overflow-hidden')
 
     node.showModal()
@@ -32,10 +27,6 @@ export class Modal extends Component {
 
   public close(): void {
     const node = this.getNode()
-
-    if (!isHtmlDialog(node)) {
-      return
-    }
 
     document.body.classList.remove('overflow-hidden')
 

@@ -1,6 +1,6 @@
 import { Component } from '@/ui/component'
 
-export class ModalPasteTextarea extends Component {
+export class ModalPasteTextarea extends Component<'textarea'> {
   constructor() {
     super({ tag: 'textarea', className: 'w-full p-2 border flex-grow font-mono', text: '' })
 

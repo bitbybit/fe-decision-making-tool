@@ -1,7 +1,7 @@
-import { Modal } from '@/ui/modal'
-import { ModalContainer } from '@/ui/modal-container'
-import { ModalMessageText } from '@/ui/modal-message-text'
-import { ModalCancelButton } from '@/ui/modal-cancel-button'
+import { Modal } from '@/ui/modal/modal'
+import { ModalContainer } from '@/ui/modal/modal-container'
+import { ModalMessageText } from '@/ui/modal/modal-message/modal-message-text'
+import { ModalCancelButton } from '@/ui/modal/modal-cancel-button'
 
 export class ModalMessage extends Modal {
   private readonly container: ModalContainer

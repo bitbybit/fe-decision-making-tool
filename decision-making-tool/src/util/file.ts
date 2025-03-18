@@ -10,7 +10,7 @@ export function saveDataToJson(filename: string, data: string): void {
   const blob = new Blob([data], { type: 'application/json' })
   const url = URL.createObjectURL(blob)
 
-  const a = new Component({ tag: 'a' })
+  const a = new Component<'a'>({ tag: 'a' })
 
   a.setAttribute('href', url)
   a.setAttribute('download', filename)
@@ -26,7 +26,7 @@ export function saveDataToJson(filename: string, data: string): void {
  */
 export function loadDataFromJson(accept: string = 'application/json'): Promise<string> {
   return new Promise((resolve, reject) => {
-    const input = new Component({ tag: 'input' })
+    const input = new Component<'input'>({ tag: 'input' })
 
     input.setAttribute('type', 'file')
     input.setAttribute('accept', accept)

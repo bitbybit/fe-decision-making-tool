@@ -28,6 +28,7 @@ export class App {
         (): void => {
           this.container.getNode().replaceChildren()
           this.container.append(routeViewInstance.container)
+          routeViewInstance?.onRender?.()
         }
       ])
     )

@@ -8,6 +8,8 @@ export type AppState = {
 }
 
 class State {
+  public readonly minOptionAmountToStart = 2
+
   private readonly optionListStorageKey: string = 'optionList'
   private readonly optionCounterStorageKey: string = 'optionCounter'
 
@@ -48,6 +50,14 @@ class State {
 
   public get optionCounter(): number {
     return this.state.optionCounter
+  }
+
+  public get validOptions(): OptionListModel['entries'] {
+    return this.optionList.entries.filter(({ title, weight }) => title !== '' && weight > 0)
+  }
+
+  public get canStart(): boolean {
+    return this.validOptions.length >= this.minOptionAmountToStart
   }
 
   public incrementOptionCounter(): number {

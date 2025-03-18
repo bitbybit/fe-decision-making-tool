@@ -1,5 +1,5 @@
 import { type OptionModel } from '@/model/option'
-import { type ModalPasteConfirmPayload } from '@/ui/modal-paste'
+import { type ModalPasteConfirmPayload } from '@/ui/modal/modal-paste/modal-paste'
 
 /**
  * If value is an object
@@ -31,24 +31,6 @@ export function isOption(value: unknown): value is OptionModel {
  */
 export function isHtmlInput(target: unknown): target is HTMLInputElement {
   return target instanceof HTMLInputElement
-}
-
-/**
- * If target is textarea element
- * @param target element to check
- * @returns Boolean result
- */
-export function isHtmlTextarea(target: unknown): target is HTMLTextAreaElement {
-  return target instanceof HTMLTextAreaElement
-}
-
-/**
- * If target is dialog element
- * @param target element to check
- * @returns Boolean result
- */
-export function isHtmlDialog(target: unknown): target is HTMLDialogElement {
-  return target instanceof HTMLDialogElement
 }
 
 /**

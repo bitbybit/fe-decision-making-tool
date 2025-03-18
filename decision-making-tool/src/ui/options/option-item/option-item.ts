@@ -1,12 +1,12 @@
 import { Component } from '@/ui/component'
-import { OptionItemId } from '@/ui/option-item-id'
-import { OptionItemTitleInput } from '@/ui/option-item-title-input'
-import { OptionItemWeightInput } from '@/ui/option-item-weight-input'
-import { OptionItemDeleteButton } from '@/ui/option-item-delete-button'
+import { OptionItemId } from '@/ui/options/option-item/option-item-id'
+import { OptionItemTitleInput } from '@/ui/options/option-item/option-item-title-input'
+import { OptionItemWeightInput } from '@/ui/options/option-item/option-item-weight-input'
+import { OptionItemDeleteButton } from '@/ui/options/option-item/option-item-delete-button'
 import { state } from '@/state'
 import { isHtmlInput } from '@/util/type-guard'
 
-export class OptionItem extends Component {
+export class OptionItem extends Component<'div'> {
   private readonly id: OptionItemId
   private readonly titleInput: OptionItemTitleInput
   private readonly weightInput: OptionItemWeightInput

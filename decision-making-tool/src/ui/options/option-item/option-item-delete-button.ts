@@ -1,6 +1,6 @@
 import { Component } from '@/ui/component'
 
-export class OptionItemDeleteButton extends Component {
+export class OptionItemDeleteButton extends Component<'button'> {
   constructor() {
     super({
       tag: 'button',

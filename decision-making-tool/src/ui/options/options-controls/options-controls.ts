@@ -1,12 +1,12 @@
 import { Component } from '@/ui/component'
-import { OptionsControlsAddButton } from '@/ui/options-controls-add-button'
-import { OptionsControlsPasteButton } from '@/ui/options-controls-paste-button'
-import { OptionsControlsClearButton } from '@/ui/options-controls-clear-button'
-import { OptionsControlsSaveButton } from '@/ui/options-controls-save-button'
-import { OptionsControlsLoadButton } from '@/ui/options-controls-load-button'
-import { OptionsControlsStartButton } from '@/ui/options-controls-start-button'
+import { OptionsControlsAddButton } from '@/ui/options/options-controls/options-controls-add-button'
+import { OptionsControlsPasteButton } from '@/ui/options/options-controls/options-controls-paste-button'
+import { OptionsControlsClearButton } from '@/ui/options/options-controls/options-controls-clear-button'
+import { OptionsControlsSaveButton } from '@/ui/options/options-controls/options-controls-save-button'
+import { OptionsControlsLoadButton } from '@/ui/options/options-controls/options-controls-load-button'
+import { OptionsControlsStartButton } from '@/ui/options/options-controls/options-controls-start-button'
 
-export class OptionsControls extends Component {
+export class OptionsControls extends Component<'div'> {
   private readonly addButton: OptionsControlsAddButton
   private readonly pasteButton: OptionsControlsPasteButton
   private readonly clearButton: OptionsControlsClearButton

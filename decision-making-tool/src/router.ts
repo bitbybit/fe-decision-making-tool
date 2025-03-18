@@ -6,8 +6,9 @@ export type RouteCallback = () => void
 export type Routes = Record<string, RouteCallback>
 
 export type RouteView = {
-  container: Component
+  container: Component<keyof HTMLElementTagNameMap>
   setRouter(router: Router): void
+  onRender?(): void
 }
 
 export type RouteViews = Record<keyof Routes, new () => RouteView>

@@ -1,10 +1,9 @@
-import { Modal } from '@/ui/modal'
-import { ModalContainer } from '@/ui/modal-container'
-import { ModalPasteTextarea } from '@/ui/modal-paste-textarea'
-import { ModalPasteButtons } from '@/ui/modal-paste-buttons'
-import { ModalPasteConfirmButton } from '@/ui/modal-paste-confirm-button'
-import { ModalCancelButton } from '@/ui/modal-cancel-button'
-import { isHtmlTextarea } from '@/util/type-guard'
+import { Modal } from '@/ui/modal/modal'
+import { ModalContainer } from '@/ui/modal/modal-container'
+import { ModalPasteTextarea } from '@/ui/modal/modal-paste/modal-paste-textarea'
+import { ModalPasteButtons } from '@/ui/modal/modal-paste/modal-paste-buttons'
+import { ModalPasteConfirmButton } from '@/ui/modal/modal-paste/modal-paste-confirm-button'
+import { ModalCancelButton } from '@/ui/modal/modal-cancel-button'
 
 export type ModalPasteConfirmPayload = {
   value: string
@@ -28,10 +27,6 @@ export class ModalPaste extends Modal {
 
     this.confirmButton.addListener('click', () => {
       const textAreaNode = this.textArea.getNode()
-
-      if (!isHtmlTextarea(textAreaNode)) {
-        return
-      }
 
       this.eventTarget.dispatchEvent(
         new CustomEvent<ModalPasteConfirmPayload>('click:confirm', {

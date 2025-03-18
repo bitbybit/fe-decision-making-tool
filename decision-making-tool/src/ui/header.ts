@@ -1,6 +1,6 @@
 import { Component } from '@/ui/component'
 
-export class Header extends Component {
+export class Header extends Component<'h1'> {
   constructor() {
     super({
       tag: 'h1',

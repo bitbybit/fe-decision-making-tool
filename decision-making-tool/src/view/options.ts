@@ -2,12 +2,12 @@ import { type RouteView } from '@/router'
 import { BaseView } from '@/view/base'
 import { OptionModel } from '@/model/option'
 import { Header } from '@/ui/header'
-import { Options } from '@/ui/options'
-import { OptionsContainer } from '@/ui/options-container'
-import { OptionItem } from '@/ui/option-item'
-import { OptionsControls } from '@/ui/options-controls'
-import { ModalPaste } from '@/ui/modal-paste'
-import { ModalMessage } from '@/ui/modal-message'
+import { Options } from '@/ui/options/options'
+import { OptionsContainer } from '@/ui/options/options-container'
+import { OptionItem } from '@/ui/options/option-item/option-item'
+import { OptionsControls } from '@/ui/options/options-controls/options-controls'
+import { ModalPaste } from '@/ui/modal/modal-paste/modal-paste'
+import { ModalMessage } from '@/ui/modal/modal-message/modal-message'
 import { jsonToOptionList, optionListToJson } from '@/util/serializer'
 import { loadDataFromJson, saveDataToJson } from '@/util/file'
 import { isDataJson, isModalPasteConfirmPayload } from '@/util/type-guard'
@@ -21,8 +21,6 @@ export class OptionsView extends BaseView implements RouteView {
   private readonly controls: OptionsControls
   private readonly modalPaste: ModalPaste
   private readonly modalMessage: ModalMessage
-
-  private readonly minOptionAmountToStart = 2
 
   constructor() {
     super()
@@ -85,11 +83,9 @@ export class OptionsView extends BaseView implements RouteView {
     })
 
     this.controls.eventTarget.addEventListener('click:start', () => {
-      const validOptions = state.optionList.entries.filter(({ title, weight }) => title !== '' && weight > 0)
-
-      if (validOptions.length < this.minOptionAmountToStart) {
+      if (!state.canStart) {
         this.modalMessage.display(
-          `Please add at least ${this.minOptionAmountToStart} valid options. An option is considered valid if its title is not empty and its weight is greater than 0.`
+          `Please add at least ${state.minOptionAmountToStart} valid options. An option is considered valid if its title is not empty and its weight is greater than 0.`
         )
         return
       }

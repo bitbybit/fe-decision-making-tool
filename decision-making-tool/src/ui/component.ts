@@ -1,20 +1,20 @@
-export class Component {
+export class Component<T extends keyof HTMLElementTagNameMap> {
   public readonly eventTarget: EventTarget
 
-  private readonly children: Component[] = []
-  private readonly node: HTMLElement
+  private readonly children: Component<keyof HTMLElementTagNameMap>[] = []
+  private readonly node: HTMLElementTagNameMap[T]
 
   constructor(
     {
-      tag = 'div',
+      tag,
       className = '',
       text = ''
     }: {
-      tag?: keyof HTMLElementTagNameMap
+      tag: T
       className?: string
       text?: string
     },
-    ...children: Component[]
+    ...children: Component<keyof HTMLElementTagNameMap>[]
   ) {
     this.eventTarget = new EventTarget()
 
@@ -30,22 +30,22 @@ export class Component {
     }
   }
 
-  public append(child: Component): void {
+  public append(child: Component<keyof HTMLElementTagNameMap>): void {
     this.children.push(child)
     this.node.append(child.getNode())
   }
 
-  public appendChildren(children: Component[]): void {
+  public appendChildren(children: Component<keyof HTMLElementTagNameMap>[]): void {
     for (const element of children) {
       this.append(element)
     }
   }
 
-  public getNode(): HTMLElement {
+  public getNode(): HTMLElementTagNameMap[T] {
     return this.node
   }
 
-  public getChildren(): Component[] {
+  public getChildren(): Component<keyof HTMLElementTagNameMap>[] {
     return this.children
   }
 
@@ -67,7 +67,7 @@ export class Component {
 
   public addListener(
     event: keyof HTMLElementEventMap,
-    listener: (this: HTMLElement, event: Event) => unknown,
+    listener: (this: HTMLElementTagNameMap[T], event: Event) => unknown,
     options: boolean | undefined = false
   ): void {
     this.node.addEventListener(event, listener, options)
@@ -75,7 +75,7 @@ export class Component {
 
   public removeListener(
     event: string,
-    listener: (this: HTMLElement, event: Event) => unknown,
+    listener: (this: HTMLElementTagNameMap[T], event: Event) => unknown,
     options: boolean | undefined = false
   ): void {
     this.node.removeEventListener(event, listener, options)
