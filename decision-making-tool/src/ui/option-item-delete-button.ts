@@ -5,7 +5,7 @@ export class OptionItemDeleteButton extends Component {
     super({
       tag: 'button',
       className: 'bg-red-500 text-white px-2 py-1 rounded',
-      text: 'Delete'
+      text: '🗑'
     })
   }
 }
